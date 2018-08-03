@@ -1,0 +1,47 @@
+{
+    "fields": [
+        {
+            "name": "title",
+            "type": "string"
+        },
+        {
+            "name": "content",
+            "type": "text"
+        },
+        {
+            "name": "email",
+            "type": "email"
+        },
+        {
+            "name": "number",
+            "type": "number"
+        },
+        {
+            "name": "image",
+            "type": "image"
+        },
+        {
+            "name": "category",
+            "type": "select",
+            "options": {
+                "technology": "Technology",
+                "tips": "Tips",
+                "health": "Health"
+            }
+        }
+    ],
+    "validations": [
+        {
+            "field": "title",
+            "rules": "required"
+        },
+        {
+            "field": "content",
+            "rules": "required"
+        },
+        {
+            "field": "email",
+            "rules": "required"
+        }
+    ]
+}
