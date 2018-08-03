@@ -1,0 +1,11 @@
+<div class="form-group has-feedback col-xs-8 col-md-8 col-lg-8 {{ $errors->has('%%itemName%%') ? 'has-error' : ''}}">
+    <label for="%1$s" class="col-md-4 control-label">%%itemName%%</label>
+    <div class="col-md-6">
+	<select name="%%itemName%%" class="form-control" id="%%itemName%%" %%required%%>
+	    @foreach (json_decode('%%options%%', true) as $optionKey => $optionValue)
+	        <option value="{{ $optionKey }}" {{ (isset($%%crudNameSingular%%->%%itemName%%) && $%%crudNameSingular%%->%%itemName%% == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+	    @endforeach
+	</select>
+        {!! $errors->first('%%itemName%%', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>

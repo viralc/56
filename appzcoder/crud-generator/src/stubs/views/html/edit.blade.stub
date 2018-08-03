@@ -1,0 +1,40 @@
+@extends('layouts.app')
+
+@section('title') %%modelName%% - Form @stop
+
+@section('page_title') %%modelName%% @stop
+@section('page_subtitle') @if ($%%crudNameSingular%%->exists) Editing %%modelName%%: {{ $%%crudNameSingular%%->id }} @else Add New %%modelName%% @endif @stop
+
+@section('title')
+  @parent
+  %%modelName%%
+@stop
+
+@section('content')
+<div class="container">
+  <div class="row">
+    @include('admin.sidebar')
+    <div class="col-md-9">
+      {!! Form::open(['method' => 'post', 'route' => '%%routePrefix%%.%%crudNameSingular%%.save', 'files'=>true]) !!}
+      <div class="card">
+
+        <div class="card-body row">
+            {!! Form::hidden('id', $%%crudNameSingular%%->id) !!}
+            @include ('%%viewTemplateDir%%.form')
+        </div>
+
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-sm-8">
+              <input type="submit" class="btn-primary btn" value="Save">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+
+@stop

@@ -1,0 +1,6 @@
+<div class="form-group has-feedback col-xs-8 col-md-8 col-lg-8 {{ $errors->has('{{FIELD_NAME}}') ? 'has-error' : '' }}">
+    <div class="checkbox">
+        <br /><label><input type="checkbox" name="{{ %1$s }}" value="1" {{ (isset($%%crudNameSingular%%) && 1 == $%%crudNameSingular%%->%1$s) ? 'checked' : '' }}> Yes</label>
+        <br /><label><input type="checkbox" name="{{ %1$s }}" value="1" {{ (isset($%%crudNameSingular%%) && 0 == $%%crudNameSingular%%->%1$s) ? 'checked' : '' }}> No</label>
+    </div>
+</div>

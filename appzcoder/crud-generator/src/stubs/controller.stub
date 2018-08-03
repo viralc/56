@@ -1,0 +1,102 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyRootNamespaceHttp\Requests;
+use DummyRootNamespaceHttp\Controllers\Controller;
+use App\Traits\CanUpload;
+use DummyRootNamespace{{modelNamespace}}{{modelName}};
+use Illuminate\Http\Request;
+
+class DummyClass extends Controller
+{
+    private $debug = '0';
+    use CanUpload;
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        ${{crudName}} = {{modelName}}::withTrashed();
+        {{whereSnippet}}
+        ${{crudName}} = ${{crudName}}->paginate(20);
+        if($this->debug == '1'){
+            return ${{crudName}};
+        }else{
+            return view('{{viewPath}}{{crudName}}.index')->with('{{crudName}}Data', ${{crudName}}); 
+        }
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function form({{modelName}} ${{crudNameSingular}} = null)
+    {
+        ${{crudNameSingular}} = ${{crudNameSingular}} ?: new {{modelName}};
+        //$categories = \App\Category::pluck('name', 'id')->toArray();
+        if($this->debug == '1'){
+            return ${{crudNameSingular}};
+        }
+        return view('{{viewPath}}{{crudName}}.edit')->with('{{crudNameSingular}}', ${{crudNameSingular}});
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function post(Request $request, {{modelName}} ${{crudNameSingular}})
+    {
+        {{validationRules}}
+        ${{crudNameSingular}} = {{modelName}}::firstOrNew(['id' => $request->get('id')]);
+        ${{crudNameSingular}}->id = $request->get('id');
+        {{postSnippet}}
+        {{fileSnippet}}
+        ${{crudNameSingular}}->save();
+
+        $message = '{{crudNameSingular}} Added';
+        //return $product;
+        return redirect()->route('{{viewPath}}{{crudNameSingular}}.index')->withMessage($message);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete({{modelName}} ${{crudNameSingular}})
+    {
+        ${{crudNameSingular}}->delete();
+        $message = '{{crudNameSingular}} Deleted.';
+        return redirect()->back()->withMessage($message);
+    }
+
+    /**
+     * Restore the specified deleted resource to storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(${{crudNameSingular}}Id)
+    {
+        ${{crudNameSingular}} = {{modelName}}::withTrashed()->find(${{crudNameSingular}}Id);
+        ${{crudNameSingular}}->restore();
+        $message = '{{crudNameSingular}} Restored.';
+        return redirect()->back()->withMessage($message);
+    }
+
+    public function forceDelete(${{crudNameSingular}}Id)
+    {
+        ${{crudNameSingular}} = {{modelName}}::withTrashed()->find(${{crudNameSingular}}Id);
+        ${{crudNameSingular}}->forceDelete();
+        $message = '{{crudNameSingular}} permanently deleted.';
+        return redirect()->back()->withMessage($message);
+    }
+}

@@ -1,0 +1,8 @@
+<div class="form-group has-feedback col-xs-8 col-md-8 col-lg-8 {{ $errors->has('%%crudNameSingular%%') ? 'has-error' : '' }}">
+	<div class="radio">
+	    <br /><label><input type="checkbox" name="%%crudNameSingular%%" value="1">%%crudNameSingular%%</label>
+    </div>
+	<div class="radio">
+	    <br /><label><input name="%%itemName%%" type="radio" value="0" @if (isset($%%crudNameSingular%%)) {{ (0 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }} @else {{ 'checked' }} @endif> No</label>
+    </div>
+</div>

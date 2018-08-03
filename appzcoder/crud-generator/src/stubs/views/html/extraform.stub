@@ -1,0 +1,9 @@
+<!--<div class="form-group col-md-6 col-xs-6 col-lg-6  has-feedback {{ $errors->has('category_id') ? 'has-error' : '' }}">
+	<label control-label"> Category <span class="required">*</span></label>
+	{!! Form::select('category_id', $categories, $post->category_id, ['class' => 'form-control selectpicker', 'id' => 'category_id', 'placeholder' => 'Please select a category', 'data-live-search' => "true"]) !!}
+  @if ($errors->has('category_id'))
+    <span class="help-block">
+      <strong>{{ $errors->first('category_id') }}</strong>
+    </span>
+  @endif
+</div>-->

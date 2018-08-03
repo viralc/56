@@ -1,0 +1,10 @@
+ <div class="form-group has-feedback col-xs-8 col-md-8 col-lg-8 {{ $errors->has('%%itemName%%') ? 'has-error' : '' }}">
+    <label>%%itemName%%</label>
+        <textarea name="%%itemName%%" class="form-control" id="%%itemName%%" %%required%%>{!! $%%crudNameSingular%%->%%itemName%% ?: old('%%itemName%%') !!}</textarea>
+
+        @if ($errors->has('%%itemName%%'))
+            <span class="help-block">
+                <strong>{{ $errors->first('%%itemName%%') }}</strong>
+            </span>
+        @endif
+</div>
